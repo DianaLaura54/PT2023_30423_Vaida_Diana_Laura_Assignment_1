@@ -7,7 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="PT2023" />
+        <module name="PT2023_30423_Vaida_Diana_Laura_Assignment_1" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="PT2023" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -24,12 +24,9 @@ public class Controller {
         this.view.addCreateListener5(new CreateListener5());
         this.view.addCreateListener6(new CreateListener6());
     }
-
-
     class CreateListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
-
                 String first = view.getpolynomial1();
                 String second = view.getpolynomial2();
                 Polynomial polynomial1 =new Polynomial();
@@ -39,23 +36,17 @@ public class Controller {
                polynomial2.StringtoPol(second);
                result=operations.add(polynomial1,polynomial2);
                String x="";
-                for (Map.Entry<Integer, Double> entry : result.getMap().entrySet()) {
-                    if(entry.getKey()==0)
+                for (Map.Entry<Integer, Double> entry :result.getMap().entrySet()) {
+                      if(entry.getValue()>0)
                     {
-                        x = Double.toString(entry.getValue())  +x;
+                      x = "+" + Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) + x;
                     }
                     else if(entry.getValue()<0)
                     {
-                        x = Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +"+" + x;
-                    }
-                    else
-                    {
                         x =  Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +x;
                     }
-
                 }
                 view.settextAreaResult(x);
-
             } catch (Exception ex) {
                 view.showMessage("Something went wrong!");
                 ex.printStackTrace();
@@ -65,7 +56,6 @@ public class Controller {
     class CreateListener2 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
-
                 String first = view.getpolynomial1();
                 String second = view.getpolynomial2();
                 Polynomial polynomial1 =new Polynomial();
@@ -75,16 +65,12 @@ public class Controller {
                 polynomial2.StringtoPol(second);
                 result=operations.substraction(polynomial1,polynomial2);
                 String x="";
-                for (Map.Entry<Integer, Double> entry : result.getMap().entrySet()) {
-                    if(entry.getKey()==0)
+                for (Map.Entry<Integer, Double> entry :result.getMap().entrySet()) {
+                    if(entry.getValue()>0)
                     {
-                        x = Double.toString(entry.getValue())  +x;
+                        x = "+" + Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) + x;
                     }
                     else if(entry.getValue()<0)
-                    {
-                        x = Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +"+" + x;
-                    }
-                    else
                     {
                         x =  Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +x;
                     }
@@ -108,22 +94,17 @@ public class Controller {
                 polynomial2.StringtoPol(second);
                 result=operations.multiplication(polynomial1,polynomial2);
                 String x="";
-                for (Map.Entry<Integer, Double> entry : result.getMap().entrySet()) {
-                    if(entry.getKey()==0)
+                for (Map.Entry<Integer, Double> entry :result.getMap().entrySet()) {
+                    if(entry.getValue()>0)
                     {
-                        x = Double.toString(entry.getValue())  +x;
+                        x = "+" + Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) + x;
                     }
                     else if(entry.getValue()<0)
-                    {
-                        x = Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +"+" + x;
-                    }
-                    else
                     {
                         x =  Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +x;
                     }
                 }
                 view.settextAreaResult(x);
-
             } catch (Exception ex) {
                 view.showMessage("Something went wrong!");
                 ex.printStackTrace();
@@ -137,25 +118,29 @@ public class Controller {
                 String second = view.getpolynomial2();
                 Polynomial polynomial1 =new Polynomial();
                 Polynomial polynomial2 =new Polynomial();
-                Polynomial result;
+                Polynomial[] result=new Polynomial[2];
                 polynomial1.StringtoPol(first);
                 polynomial2.StringtoPol(second);
-                result=operations.division(polynomial1,polynomial2);
-                String x="";
-                for (Map.Entry<Integer, Double> entry : result.getMap().entrySet()) {
-                    if(entry.getKey()==0)
+               result=operations.division(polynomial1,polynomial2);
+                String x="",y="";
+               for (Map.Entry<Integer, Double> entry :result[0].getMap().entrySet()) {
+                    if(entry.getValue()>0)
                     {
-                        x = Double.toString(entry.getValue())  +x;
+                        x = "+" + Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) + x;
                     }
                     else if(entry.getValue()<0)
-                    {
-                        x = Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +"+" + x;
-                    }
-                    else
                     {
                         x =  Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +x;
                     }
                 }
+                for (Map.Entry<Integer, Double> entry :result[1].getMap().entrySet()) {
+                    if (entry.getValue() > 0) {
+                        y = "+" + Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) + y;
+                    } else if (entry.getValue() < 0) {
+                        y = Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) + y;
+                    }
+                }
+                x="Remainder:"+x+","+"Quotient:"+y;
                 view.settextAreaResult(x);
             } catch (Exception ex) {
                 view.showMessage("Something went wrong!");
@@ -166,27 +151,21 @@ public class Controller {
     class CreateListener5 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
-
                 String first = view.getpolynomial1();
                 Polynomial polynomial1 =new Polynomial();
                 Polynomial result;
                 polynomial1.StringtoPol(first);
                 result=operations.integrative(polynomial1);
                 String x="";
-                for (Map.Entry<Integer, Double> entry : result.getMap().entrySet()) {
-                    if(entry.getKey()==0)
+                for (Map.Entry<Integer, Double> entry :result.getMap().entrySet()) {
+                    if(entry.getValue()>0)
                     {
-                        x = Double.toString(entry.getValue())  +x;
+                        x = "+" + Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) + x;
                     }
                     else if(entry.getValue()<0)
                     {
-                        x = Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +"+" + x;
-                    }
-                    else
-                    {
                         x =  Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +x;
                     }
-
                 }
                 view.settextAreaResult(x);
             } catch (Exception ex) {
@@ -198,23 +177,18 @@ public class Controller {
     class CreateListener6 implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             try {
-
                 String first = view.getpolynomial1();
                 Polynomial polynomial1 =new Polynomial();
                 Polynomial result;
                 polynomial1.StringtoPol(first);
                 result=operations.derivative(polynomial1);
                 String x="";
-                for (Map.Entry<Integer, Double> entry : result.getMap().entrySet()) {
-                    if(entry.getKey()==0)
+                for (Map.Entry<Integer, Double> entry :result.getMap().entrySet()) {
+                    if(entry.getValue()>0)
                     {
-                        x = Double.toString(entry.getValue())  +x;
+                        x = "+" + Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) + x;
                     }
                     else if(entry.getValue()<0)
-                    {
-                        x = Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +"+" + x;
-                    }
-                    else
                     {
                         x =  Double.toString(entry.getValue()) + "x^" + Integer.toString(entry.getKey()) +x;
                     }

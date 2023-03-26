@@ -58,7 +58,7 @@ public class View extends JFrame {
         btnMultiplication.setBounds(581, 186, 138, 27);
         getContentPane().add(btnMultiplication);
 
-         btnDivision = new JButton("division");
+        btnDivision = new JButton("division");
         btnDivision.setFont(new Font("Georgia", Font.PLAIN, 15));
         btnDivision.setBounds(581, 233, 138, 27);
         getContentPane().add(btnDivision);
