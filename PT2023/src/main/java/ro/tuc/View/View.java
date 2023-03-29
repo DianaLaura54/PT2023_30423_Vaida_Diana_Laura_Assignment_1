@@ -100,7 +100,6 @@ public class View extends JFrame {
         this.polynomial2.setText(polynomial2);
     }
 
-
     public String gettextAreaResult() {
         return textAreaResult.getText();
     }

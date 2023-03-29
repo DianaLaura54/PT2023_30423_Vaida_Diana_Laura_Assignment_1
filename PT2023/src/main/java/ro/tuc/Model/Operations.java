@@ -25,11 +25,11 @@ public class Operations {
                 result.getMap().put(key, value);
             }
         }
-     result=result.empty(result);
+        result = result.empty(result);
         return result;
     }
 
-    public Polynomial substraction(Polynomial polynomial, Polynomial polynomial2) {
+    public Polynomial subtraction(Polynomial polynomial, Polynomial polynomial2) {
         Polynomial result = new Polynomial();
         for (Map.Entry<Integer, Double> entry1 : polynomial.getMap().entrySet()) {
             Integer key = entry1.getKey();
@@ -45,7 +45,7 @@ public class Operations {
                 result.getMap().put(key, -value);
             }
         }
-        result=result.empty(result);
+        result = result.empty(result);
         return result;
     }
 
@@ -58,7 +58,7 @@ public class Operations {
                 result.getMap().put(key, value);
             }
         }
-        result=result.empty(result);
+        result = result.empty(result);
         return result;
     }
 
@@ -75,11 +75,11 @@ public class Operations {
                 }
             }
         }
-        result=result.empty(result);
+        result = result.empty(result);
         return result;
     }
 
-    public Polynomial integrative(Polynomial polynomial) {
+    public Polynomial integration(Polynomial polynomial) {
         Polynomial result = new Polynomial();
         for (Map.Entry<Integer, Double> entry1 : polynomial.getMap().entrySet()) {
             Integer key = entry1.getKey() + 1;
@@ -88,34 +88,37 @@ public class Operations {
                 result.getMap().put(key, value);
             }
         }
-        result=result.empty(result);
+        result = result.empty(result);
         return result;
     }
 
     public Polynomial[] division(Polynomial polynomial, Polynomial polynomial2) {
-        Polynomial []div=new Polynomial[2];
-        div[0]=new Polynomial();
-        div[1]=new Polynomial();
+        Polynomial[] div = new Polynomial[2];
+        div[0] = new Polynomial();
+        div[1] = new Polynomial();
         Polynomial divisor = polynomial2;
-        Polynomial dividend=polynomial;
+        Polynomial dividend = polynomial;
         Polynomial quotient = new Polynomial();
-        Polynomial temp= new Polynomial();
+        Polynomial temp = new Polynomial();
         Polynomial remainder = new Polynomial();
-        remainder=remainder.copy(polynomial);
-    while (!dividend.getMap().isEmpty() && Collections.max(dividend.getMap().keySet()) >= Collections.max(divisor.getMap().keySet())
-            && Collections.max(remainder.getMap().keySet())!=0 ) {
+        remainder = remainder.copy(polynomial);
+        while (!dividend.getMap().isEmpty() && Collections.max(dividend.getMap().keySet()) >= Collections.max(divisor.getMap().keySet())
+                && Collections.max(remainder.getMap().keySet()) != 0) {
             double x = dividend.value(dividend);
             double y = divisor.value(divisor);
             int z = Collections.max(dividend.getMap().keySet()) - Collections.max(divisor.getMap().keySet());
-           quotient.getMap().put(z, x / y);
-           remainder.getMap().clear();
+            quotient.getMap().put(z, x / y);
+            remainder.getMap().clear();
             temp.getMap().clear();
-           temp.getMap().put(z, -(x / y));
-           remainder = multiplication(temp, divisor);
-            dividend=add(dividend,remainder);}
-    if(dividend.getMap().isEmpty()) {
-        dividend.getMap().put(0, 0.0);}
-    div[0]=div[0].copy(dividend);
-   div[1]=div[1].copy(quotient);
-    return div;}
+            temp.getMap().put(z, -(x / y));
+            remainder = multiplication(temp, divisor);
+            dividend = add(dividend, remainder);
+        }
+        if (dividend.getMap().isEmpty()) {
+            dividend.getMap().put(0, 0.0);
+        }
+        div[0] = div[0].copy(dividend);
+        div[1] = div[1].copy(quotient);
+        return div;
+    }
 }
